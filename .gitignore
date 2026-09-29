@@ -1,0 +1,14 @@
+# local environment and caches
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+
+# never commit local settings, cached calendars or credentials
+config.json
+config.json.bad-*
+*.ics
+.env
+*.pem
+*.key
