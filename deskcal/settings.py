@@ -128,16 +128,17 @@ class SettingsWindow(Gtk.Window):
         gsw.connect("notify::active", lambda w, _p: self._set("google_event_colors", w.get_active(), refetch=True))
         gbox.pack_start(gsw, False, False, 0)
         gbox.pack_start(_note(
-            "<b>Google event colours</b>: give each Google event the colour it has in Google Calendar. "
+            "<b>Google event colours</b> (off by default): give each Google event the colour it has in Google Calendar. "
             "Google leaves these out of the normal calendar feed, so DeskCal asks the Google Calendar API "
-            "using your Online Accounts login. It only reads: for each event its id, start time and colour, and the "
-            "colour labels of the calendar (no titles or attendees); the login token is never stored."), True, True, 0)
+            "with the Google login GNOME Online Accounts holds. It only sends read requests for each event's id, "
+            "start time and colour and the calendar's colour labels (no titles or attendees); "
+            "the login token is never stored."), True, True, 0)
         box.pack_start(gbox, False, False, 0)
 
         box.pack_start(Gtk.Separator(), False, False, 8)
         box.pack_start(_heading("Calendar links (iCal)"), False, False, 0)
         box.pack_start(_note(
-            "Works without any account setup. Links are kept in your GNOME keyring.\n" + GOOGLE_HELP),
+            "Works without any account setup. Links are kept in your GNOME keyring (if there is none, in a private config file).\n" + GOOGLE_HELP),
             False, False, 0)
         self.ics_list = Gtk.ListBox()
         self.ics_list.set_selection_mode(Gtk.SelectionMode.NONE)

@@ -293,7 +293,7 @@ def _fetch_eds(ECal, src, info, start, end, refresh):
 def fetch_all(cfg, start: date, end: date, refresh=False):
     result = FetchResult()
     google_jobs, google_problems = [], set()
-    google_on = cfg.get("google_event_colors", True)
+    google_on = cfg.get("google_event_colors", False)
     if not google_on:
         googlecolors.shared().forget()  # switched off: no token, nothing cached
     feeds = [f for f in cfg.get("ics", []) if f.get("enabled", True)]

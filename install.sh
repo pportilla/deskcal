@@ -3,7 +3,8 @@
 #
 #   ./install.sh               install / update
 #   ./install.sh --autostart   ... and start it automatically at login
-#   ./install.sh --uninstall   remove it (your settings in ~/.config/deskcal stay)
+#   ./install.sh --uninstall   remove it (settings in ~/.config/deskcal and calendar links
+#                              kept in the keyring stay; the saved-calendar cache is deleted)
 set -euo pipefail
 
 SRC="$(cd "$(dirname "$0")" && pwd)"
@@ -20,8 +21,9 @@ for arg in "$@"; do
         --autostart) autostart=1 ;;
         --uninstall)
             "$BIN/deskcal" --quit 2>/dev/null || true
-            rm -rf "$DEST" "$BIN/deskcal" "$APPS/$DESKTOP_ID" "$AUTOSTART/$DESKTOP_ID"
-            echo "DeskCal removed (settings kept in ~/.config/deskcal)."
+            rm -rf "$DEST" "$BIN/deskcal" "$APPS/$DESKTOP_ID" "$AUTOSTART/$DESKTOP_ID" \
+                   "${XDG_CACHE_HOME:-$HOME/.cache}/deskcal"
+            echo "DeskCal removed. Kept: your settings (~/.config/deskcal) and any calendar links in the keyring."
             exit 0 ;;
         *) echo "unknown option: $arg" >&2; exit 2 ;;
     esac
@@ -48,7 +50,7 @@ entry() {
 Type=Application
 Name=DeskCal
 Comment=Calendar widget for your desktop (Google, Microsoft 365, CalDAV, iCal)
-Exec=$BIN/deskcal
+Exec="$BIN/deskcal"
 Icon=x-office-calendar
 Categories=Office;Calendar;
 StartupWMClass=deskcal
@@ -57,15 +59,15 @@ $1
 
 [Desktop Action settings]
 Name=Settings
-Exec=$BIN/deskcal --settings
+Exec="$BIN/deskcal" --settings
 
 [Desktop Action edit]
 Name=Move / resize
-Exec=$BIN/deskcal --edit
+Exec="$BIN/deskcal" --edit
 
 [Desktop Action quit]
 Name=Quit
-Exec=$BIN/deskcal --quit
+Exec="$BIN/deskcal" --quit
 EOF
 }
 

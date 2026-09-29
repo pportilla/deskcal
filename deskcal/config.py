@@ -31,8 +31,8 @@ TOP_VIEWS = ("month", "week")      # upper part of the split layout
 BOTTOM_VIEWS = ("day", "list")     # lower part of the split layout
 
 DEFAULTS = {
-    # "secondary" picks the first non-primary monitor; otherwise a connector
-    # name such as "DP-1" or "HDMI-1".
+    # "secondary" picks the first non-primary monitor; "primary"; or the model name of a
+    # monitor as listed in Settings.
     "monitor": "secondary",
     # A preset from ANCHORS, or "custom" once the widget has been moved or
     # resized in edit mode (then x/y are relative to the monitor).
@@ -56,8 +56,9 @@ DEFAULTS = {
     "week_starts_monday": True,
     "clock_24h": True,
     "show_clock": True,
-    # Read each Google event's own colour from Google Calendar (through the Online Accounts login).
-    "google_event_colors": True,
+    # Read each Google event's own colour from Google Calendar with the Google login GNOME Online
+    # Accounts holds.  Off by default: it is an opt-in switch in Settings (see the README).
+    "google_event_colors": False,
     # Calendars coming from GNOME Online Accounts / Evolution Data Server are
     # shown unless their source UID is listed here.
     "eds_hidden": ["birthdays"],

@@ -92,7 +92,7 @@ c = load('{"width": Infinity, "opacity": NaN, "split_ratio": -Infinity}')
 check("config: Infinity / NaN do not crash", c["width"] == 620 and c["opacity"] == 0.86 and c["split_ratio"] == 0.55, (c["width"], c["opacity"], c["split_ratio"]))
 c = load(json.dumps({"width": 640, "view": "week"}))
 check("config: a config from an older version (no new keys) gets the defaults",
-      c["layout"] == "single" and c["split_bottom"] == "day" and c["google_event_colors"] is True and c["width"] == 640 and c["view"] == "week")
+      c["layout"] == "single" and c["split_bottom"] == "day" and c["google_event_colors"] is False and c["width"] == 640 and c["view"] == "week")
 
 print(f"\n{sum(results)}/{len(results)} checks passed")
 sys.exit(0 if all(results) else 1)
