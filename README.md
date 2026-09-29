@@ -121,4 +121,7 @@ Google connection were additionally checked by hand on a live GNOME session.
 
 Requires GTK 3 with PyGObject (`python3-gi`, `gir1.2-gtk-3.0`, `gir1.2-secret-1`) and,
 for Online Accounts calendars, `gir1.2-ecal-2.0` and `gir1.2-edataserver-1.2`.
-There is no licence file yet.
+
+## Licence
+
+MIT, see [LICENSE](LICENSE).
